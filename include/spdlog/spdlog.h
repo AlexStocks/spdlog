@@ -86,6 +86,14 @@ std::shared_ptr<logger> rotating_logger_st(const std::string& logger_name, const
 std::shared_ptr<logger> daily_logger_mt(const std::string& logger_name, const filename_t& filename, int hour=0, int minute=0);
 std::shared_ptr<logger> daily_logger_st(const std::string& logger_name, const filename_t& filename, int hour=0, int minute=0);
 
+
+//
+// Create hourly file logger
+//
+std::shared_ptr<logger> hourly_logger_mt(const std::string& logger_name, const filename_t& filename, int hour=0);
+std::shared_ptr<logger> hourly_logger_st(const std::string& logger_name, const filename_t& filename, int hour=0);
+
+
 //
 // Create and register stdout/stderr loggers
 //

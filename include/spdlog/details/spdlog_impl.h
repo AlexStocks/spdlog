@@ -80,6 +80,16 @@ inline std::shared_ptr<spdlog::logger> spdlog::daily_logger_st(const std::string
     return create<spdlog::sinks::daily_file_sink_st>(logger_name, filename, hour, minute);
 }
 
+// Create hourly file logger
+inline std::shared_ptr<spdlog::logger> spdlog::hourly_logger_mt(const std::string& logger_name, const filename_t& filename, int hour)
+{
+    return create<spdlog::sinks::hourly_file_sink_mt>(logger_name, filename, hour);
+}
+
+inline std::shared_ptr<spdlog::logger> spdlog::hourly_logger_st(const std::string& logger_name, const filename_t& filename, int hour)
+{
+    return create<spdlog::sinks::hourly_file_sink_st>(logger_name, filename, hour);
+}
 
 //
 // stdout/stderr loggers

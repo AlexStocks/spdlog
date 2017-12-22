@@ -16,6 +16,7 @@
 #include <memory>
 
 void async_example();
+void hourly_async_example();
 void syslog_example();
 void android_example();
 void user_defined_example();
@@ -78,6 +79,9 @@ int main(int, char*[])
         // Just call spdlog::set_async_mode(q_size) and all created loggers from now on will be asynchronous..
         async_example();
 
+        // hourly asynchronous logging
+        hourly_async_example();
+
         // syslog example. linux/osx only
         syslog_example();
 
@@ -112,6 +116,15 @@ void async_example()
     size_t q_size = 4096; //queue size must be power of 2
     spdlog::set_async_mode(q_size);
     auto async_file = spd::daily_logger_st("async_file_logger", "logs/async_log.txt");
+    for (int i = 0; i < 100; ++i)
+        async_file->info("Async message #{}", i);
+}
+
+void hourly_async_example()
+{
+    size_t q_size = 4096; //queue size must be power of 2
+    spdlog::set_async_mode(q_size);
+    auto async_file = spd::hourly_logger_st("hourly_async_file_logger", "logs/hourly_async_log.txt");
     for (int i = 0; i < 100; ++i)
         async_file->info("Async message #{}", i);
 }
